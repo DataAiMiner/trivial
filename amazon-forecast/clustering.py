@@ -72,7 +72,7 @@ def main():
 
 
     '''
-    CLUSTERING
+    CLUSTERING !! Error occurred, need improving !!
     '''
     trajectories = deepcopy(trajectoriesSet)
     distanceMatrixDictionary = {}
