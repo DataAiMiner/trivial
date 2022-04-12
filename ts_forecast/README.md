@@ -5,3 +5,4 @@
 - https://towardsdatascience.com/lets-forecast-your-time-series-using-classical-approaches-f84eb982212c
 - https://www.kaggle.com/code/sajikim/time-series-forecasting-methods-example-python/notebook
 - https://machinelearningmastery.com/remove-trends-seasonality-difference-transform-python/
+- https://analyticsindiamag.com/comprehensive-guide-to-deseasonalizing-time-series/
