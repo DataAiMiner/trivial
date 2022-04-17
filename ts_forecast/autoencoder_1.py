@@ -41,11 +41,9 @@ print(len(test_df))
 train_df_idx = train_df.index
 print('Min datetime from TRAIN set: %s' % train_df_idx.min())
 print('Max datetime from TRAIN set: %s' % train_df_idx.max())
-
 val_df_idx = val_df.index
 print('Min datetime from VALIDATION set: %s' % val_df_idx.min())
 print('Max datetime from VALIDATION set: %s' % val_df_idx.max())
-
 test_df_idx = test_df.index
 print('Min datetime from TEST set: %s' % test_df_idx.min())
 print('Max datetime from TEST set: %s' % test_df_idx.max())
@@ -66,7 +64,6 @@ for i in val_df.columns:
     s_s = np.reshape(s_s,len(s_s))
     scalers['scaler_'+i] = scaler
     val[i] = s_s
-
 test = test_df
 for i in train_df.columns:
     scaler = scalers['scaler_'+i]
@@ -76,7 +73,6 @@ for i in train_df.columns:
     test[i] = s_s
 
 # 생각해볼만한 부분 : https://datascience.stackexchange.com/questions/27628/sliding-window-leads-to-overfitting-in-lstm
-
 def split_series(series, n_past, n_future):
   # n_past ==> no of past observations
   # n_future ==> no of future observations
@@ -96,7 +92,6 @@ def split_series(series, n_past, n_future):
 n_past = 12
 n_future = 2
 n_features = 15
-
 X_train, y_train = split_series(train.values, n_past, n_future)
 X_train = X_train.reshape((X_train.shape[0], X_train.shape[1], n_features)) # cannot reshape array of size 1130112 into shape (5886,12,15)
 y_train = y_train.reshape((y_train.shape[0], y_train.shape[1], n_features))
@@ -106,7 +101,6 @@ y_val = y_val.reshape((y_val.shape[0], y_val.shape[1], n_features))
 
 # Mine : One Encoder - One Decoder
 # n_features ==> no of features at each timestep in the data.
-
 encoder_inputs = tf.keras.layers.Input(shape=(n_past, n_features))
 encoder_l1 = tf.keras.layers.LSTM(32, return_state=True)
 encoder_outputs = encoder_l1(encoder_inputs)
@@ -145,12 +139,11 @@ decoder_outputs2 = tf.keras.layers.TimeDistributed(tf.keras.layers.Dense(n_featu
 model_e2d2 = tf.keras.models.Model(encoder_inputs,decoder_outputs2)
 model_e2d2.summary()
 
-reduce_lr = tf.keras.callbacks.LearningRateScheduler(lambda x: 0.1 * 0.90 ** x)
 
+reduce_lr = tf.keras.callbacks.LearningRateScheduler(lambda x: 0.1 * 0.90 ** x)
 model_e1d1.compile(optimizer = tf.keras.optimizers.Adam(), loss=tf.keras.losses.Huber())
 history_e1d1 = model_e1d1.fit(X_train, y_train, epochs=25, validation_data=(X_val,y_val), batch_size=32, verbose=0, callbacks=[reduce_lr]) 
 # Input 0 of layer "model_2" is incompatible with the layer: expected shape=(None, 843, 15), found shape=(None, 12, 15)
-
 model_e2d2.compile(optimizer=tf.keras.optimizers.Adam(), loss=tf.keras.losses.Huber())
 history_e2d2 = model_e2d2.fit(X_train, y_train ,epochs=25,validation_data=(X_val,y_val), batch_size=32, verbose=0, callbacks=[reduce_lr])
 
