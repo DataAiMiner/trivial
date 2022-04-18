@@ -48,29 +48,29 @@ test_df_idx = test_df.index
 print('Min datetime from TEST set: %s' % test_df_idx.min())
 print('Max datetime from TEST set: %s' % test_df_idx.max())
 
-# Scaling Dataset
-train = train_df
-scalers={}
-for i in train_df.columns:
-    scaler = MinMaxScaler(feature_range=(0,1))
-    s_s = scaler.fit_transform(train[i].values.reshape(-1,1))
-    s_s = np.reshape(s_s,len(s_s))
-    scalers['scaler_'+ i] = scaler
-    train[i]=s_s
-val = val_df
-for i in val_df.columns:
-    scaler = scalers['scaler_'+i]
-    s_s = scaler.transform(val[i].values.reshape(-1,1))
-    s_s = np.reshape(s_s,len(s_s))
-    scalers['scaler_'+i] = scaler
-    val[i] = s_s
-test = test_df
-for i in train_df.columns:
-    scaler = scalers['scaler_'+i]
-    s_s = scaler.transform(test[i].values.reshape(-1,1))
-    s_s = np.reshape(s_s,len(s_s))
-    scalers['scaler_'+i] = scaler
-    test[i] = s_s
+# # Scaling Dataset
+# train = train_df
+# scalers={}
+# for i in train_df.columns:
+#     scaler = MinMaxScaler(feature_range=(0,1))
+#     s_s = scaler.fit_transform(train[i].values.reshape(-1,1))
+#     s_s = np.reshape(s_s,len(s_s))
+#     scalers['scaler_'+ i] = scaler
+#     train[i]=s_s
+# val = val_df
+# for i in val_df.columns:
+#     scaler = scalers['scaler_'+i]
+#     s_s = scaler.transform(val[i].values.reshape(-1,1))
+#     s_s = np.reshape(s_s,len(s_s))
+#     scalers['scaler_'+i] = scaler
+#     val[i] = s_s
+# test = test_df
+# for i in train_df.columns:
+#     scaler = scalers['scaler_'+i]
+#     s_s = scaler.transform(test[i].values.reshape(-1,1))
+#     s_s = np.reshape(s_s,len(s_s))
+#     scalers['scaler_'+i] = scaler
+#     test[i] = s_s
 
 # 생각해볼만한 부분 : https://datascience.stackexchange.com/questions/27628/sliding-window-leads-to-overfitting-in-lstm
 def split_series(series, n_past, n_future):
