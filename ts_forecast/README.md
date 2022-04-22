@@ -7,3 +7,8 @@
 - https://machinelearningmastery.com/remove-trends-seasonality-difference-transform-python/
 - https://analyticsindiamag.com/comprehensive-guide-to-deseasonalizing-time-series/
 - https://www.kaggle.com/code/prashant111/complete-guide-on-time-series-analysis-in-python/notebook
+
+#### Things to cover
+- AutoEncoder
+- PCA
+- LSTM AutoEncoder
