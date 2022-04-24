@@ -11,4 +11,3 @@
 #### Things to cover
 - AutoEncoder
 - PCA
-- LSTM AutoEncoder
