@@ -11,3 +11,4 @@
 #### Things to cover
 - AutoEncoder
 - PCA
+- VARMA
