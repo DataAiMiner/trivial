@@ -12,3 +12,4 @@
 - AutoEncoder
 - PCA
 - VARMA
+- Decomposition
