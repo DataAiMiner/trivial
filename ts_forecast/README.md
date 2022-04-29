@@ -13,3 +13,4 @@
 - PCA
 - VARMA
 - Decomposition
+- Bayesian
