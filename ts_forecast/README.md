@@ -16,3 +16,4 @@
 - Bayesian
 - CLT
 - Transformer
+- CNN, RNN, LSTM
