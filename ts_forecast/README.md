@@ -17,3 +17,4 @@
 - CLT
 - Transformer
 - CNN, RNN, LSTM
+- TadGAN, DCGAN
